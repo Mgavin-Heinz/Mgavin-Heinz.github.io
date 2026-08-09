@@ -65,12 +65,16 @@
   /* the figure */
   --skin:       #ddab8c;
   --skin-shade: #b57e62;
-  --hair:       #141010;
-  --cloth:      #2b2724;
-  --collar:     #201d1b;
-  --eye-white:  #e9e2d7;
-  --iris:       #3a2a1e;
-  --mouth:      #a86e56;
+  --hair:        #141010;
+  --hair-hi:     #2a2220;
+  --cloth:       #2b2724;   /* suit jacket */
+  --lapel:       #221f1c;
+  --shirt:       #d9cdb4;
+  --shirt-shade: #c4b89e;
+  --tie:         #9d1c1f;
+  --eye-white:   #e9e2d7;
+  --iris:        #3a2a1e;
+  --mouth:       #a86e56;
   --mist:      rgba(217,205,180,.05);
   --grain-op:  .07;
   --wing-a:    #9d1c1f;
@@ -101,12 +105,16 @@
   /* the figure — warmer in daylight */
   --skin:       #e8b895;
   --skin-shade: #c08a68;
-  --hair:       #1a1413;
-  --cloth:      #3b352e;
-  --collar:     #2c2721;
-  --eye-white:  #f4efe6;
-  --iris:       #43301f;
-  --mouth:      #b0755a;
+  --hair:        #1a1413;
+  --hair-hi:     #332a26;
+  --cloth:       #3b352e;   /* suit jacket */
+  --lapel:       #2c2721;
+  --shirt:       #f2ece0;
+  --shirt-shade: #ddd5c4;
+  --tie:         #8c1a1d;
+  --eye-white:   #f4efe6;
+  --iris:        #43301f;
+  --mouth:       #b0755a;
   --mist:      rgba(255,255,255,.35);
   --grain-op:  .12;
   --wing-a:    #8c1a1d;
@@ -280,13 +288,17 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
      transform for the parallax, which would override it. */
 }
 
-.fig__hair     { fill: var(--hair); }
-.fig__skin     { fill: var(--skin); }
-.fig__shade    { fill: var(--skin-shade); }
-.fig__cloth    { fill: var(--cloth); }
-.fig__collar   { fill: var(--collar); }
-.fig__eyeWhite { fill: var(--eye-white); }
-.fig__iris     { fill: var(--iris); }
+.fig__hair       { fill: var(--hair); }
+.fig__hairHi     { fill: var(--hair-hi); }    /* swept strands */
+.fig__skin       { fill: var(--skin); }
+.fig__shade      { fill: var(--skin-shade); }
+.fig__cloth      { fill: var(--cloth); }      /* jacket */
+.fig__lapel      { fill: var(--lapel); }      /* lapels, a shade darker */
+.fig__shirt      { fill: var(--shirt); }
+.fig__shirtShade { fill: var(--shirt-shade); }/* folded collar points */
+.fig__tie        { fill: var(--tie); }
+.fig__eyeWhite   { fill: var(--eye-white); }
+.fig__iris       { fill: var(--iris); }
 .fig__lid      { stroke: var(--hair); stroke-width: 3.5; stroke-linecap: round; fill: none; }
 .fig__mouth    { stroke: var(--mouth); stroke-width: 4; stroke-linecap: round; fill: none; }
 

@@ -100,54 +100,68 @@
     <!-- Layer 1: the figure peeking over, behind the wall. Parallaxes on scroll. -->
     <svg class="hero__figure" id="heroFigure" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
 
-    <!-- hair mass behind the head, falling past the shoulders -->
-    <path class="fig__hair" d="M600 38C508 38 474 110 476 186c2 64-10 146-14 222
-        -2 34 4 56 14 70l248 0c10-14 16-36 14-70-4-76-16-158-14-222 2-76-32-148-124-148z"/>
+    <!-- neck: slimmer -->
+    <path class="fig__skin" d="M578 202h44v88h-44z"/>
+    <path class="fig__shade" d="M578 202h44v24a22 22 0 0 1 -44 0z" opacity=".5"/>
 
-    <!-- neck -->
-    <path class="fig__skin" d="M574 214h52v70h-52z"/>
-    <path class="fig__shade" d="M574 214h52v24a26 26 0 0 1 -52 0z" opacity=".5"/>
+    <!-- torso: narrow shoulders -->
+    <path class="fig__cloth" d="M600 286c56 0 94 30 106 80l20 234H474l20-234c12-50 50-80 106-80z"/>
+    <!-- lean arms, angling out toward the wall -->
+    <path class="fig__cloth" d="M498 328c-64 24-114 84-142 154-20 50-34 90-42 118h80c10-34 24-74 42-114 20-44 46-80 76-102z"/>
+    <path class="fig__cloth" d="M702 328c64 24 114 84 142 154 20 50 34 90 42 118h-80c-10-34-24-74-42-114-20-44-46-80-76-102z"/>
 
-    <!-- shoulders + arms -->
-    <path class="fig__cloth" d="M600 262c78 0 136 42 158 112l26 226H416l26-226c22-70 80-112 158-112z"/>
-    <path class="fig__cloth" d="M474 326c-92 26-156 100-176 274h88c18-150 60-224 118-248z"/>
-    <path class="fig__cloth" d="M726 326c92 26 156 100 176 274h-88c-18-150-60-224-118-248z"/>
-    <!-- collar -->
-    <path class="fig__collar" d="M600 268c22 0 42 5 58 14l-24 34-34-20-34 20-24-34c16-9 36-14 58-14z"/>
+    <!-- shirt front in the V of the jacket -->
+    <path class="fig__shirt" d="M600 292c26 0 46 8 58 18l-8 290h-100l-8-290c12-10 32-18 58-18z"/>
+    <!-- collar band -->
+    <path class="fig__shirt" d="M566 296c20-10 48-10 68 0l-6 18c-17-8-39-8-56 0z"/>
+    <!-- collar points folding to the knot -->
+    <path class="fig__shirtShade" d="M570 306l30 30-13 13-34-28z"/>
+    <path class="fig__shirtShade" d="M630 306l-30 30 13 13 34-28z"/>
+    <!-- tie -->
+    <path class="fig__tie" d="M600 330l-18 16 5 18h26l5-18z"/>
+    <path class="fig__tie" d="M588 366h24l10 226-22 24-22-24z"/>
+    <!-- lapels -->
+    <path class="fig__lapel" d="M566 294c-28 10-50 32-64 64l34 232 40-256z"/>
+    <path class="fig__lapel" d="M634 294c28 10 50 32 64 64l-34 232-40-256z"/>
 
-    <!-- face: narrower, longer jaw -->
-    <path class="fig__skin" d="M600 66c-44 0-72 36-72 82 0 33 7 59 22 79 14 19 31 31 50 31
+    <!-- ears -->
+    <path class="fig__skin" d="M527 138c-9-2-16 6-15 18 1 13 8 24 17 26z"/>
+    <path class="fig__skin" d="M673 138c9-2 16 6 15 18-1 13-8 24-17 26z"/>
+
+    <!-- face -->
+    <path class="fig__skin" d="M600 56c-44 0-72 36-72 82 0 33 7 59 22 79 14 19 31 31 50 31
         s36-12 50-31c15-20 22-46 22-79 0-46-28-82-72-82z"/>
 
+    <!-- warrior cut: tight at the sides, heavy volume on top.
+         Outer arc is the crown; inner arc is a high hairline, so the
+         hair is thick over the top and almost nothing at the temples. -->
+    <path class="fig__hair" d="M536 122C524 62 552 24 600 24C648 24 676 62 664 122
+        L648 116C646 96 628 86 600 86C572 86 554 96 552 116Z"/>
+    <!-- strands swept back, catching a little light -->
+    <g class="fig__hairHi">
+      <path d="M566 74c12-20 32-32 56-34-26 12-44 26-52 44z"/>
+      <path d="M598 38c20-6 38 0 50 14-16-10-32-14-48-8z"/>
+      <path d="M634 76c-4-18-16-30-34-36 26 4 42 16 48 38z"/>
+    </g>
+
     <!-- brows -->
-    <path class="fig__hair" d="M550 130c13-8 34-8 45-3l-2 10c-10-4-29-4-41 2z"/>
-    <path class="fig__hair" d="M650 130c-13-8-34-8-45-3l2 10c10-4 29-4 41 2z"/>
+    <path class="fig__hair" d="M552 130c13-8 34-8 45-3l-2 10c-10-4-29-4-41 2z"/>
+    <path class="fig__hair" d="M648 130c-13-8-34-8-45-3l2 10c10-4 29-4 41 2z"/>
 
     <!-- eyes -->
     <g class="fig__eyeWhite">
-      <path d="M556 158c8-8 22-8 30 0-8 9-22 9-30 0z"/>
-      <path d="M644 158c-8-8-22-8-30 0 8 9 22 9 30 0z"/>
+      <path d="M557 156c8-8 22-8 30 0-8 9-22 9-30 0z"/>
+      <path d="M643 156c-8-8-22-8-30 0 8 9 22 9 30 0z"/>
     </g>
-    <g class="fig__iris"><circle cx="571" cy="158" r="6"/><circle cx="629" cy="158" r="6"/></g>
+    <g class="fig__iris"><circle cx="572" cy="156" r="6"/><circle cx="628" cy="156" r="6"/></g>
     <g class="fig__lid">
-      <path d="M556 158c8-8 22-8 30 0" fill="none"/>
-      <path d="M644 158c-8-8-22-8-30 0" fill="none"/>
+      <path d="M557 156c8-8 22-8 30 0" fill="none"/>
+      <path d="M643 156c-8-8-22-8-30 0" fill="none"/>
     </g>
 
     <!-- nose + mouth -->
-    <path class="fig__shade" d="M596 172l-6 26c4 4 16 4 20 0l-6-26z" opacity=".3"/>
-    <path class="fig__mouth" d="M585 216c9 6 21 6 30 0"/>
-
-    <!-- fringe, parted, layered over the forehead -->
-    <path class="fig__hair" d="M600 50c-56 0-88 40-90 98 7-28 22-47 43-55
-        -5 13-8 25-8 37 11-26 30-42 55-41-4 10-7 19-7 28 13-22 31-33 52-30
-        -3 8-5 16-4 24 11-17 26-25 43-22-6-23-28-39-84-39z"/>
-
-    <!-- tapered locks framing the jaw -->
-    <path class="fig__hair" d="M522 128c-10 70-12 158-8 236 2 34 6 62 12 82
-        9-22 15-52 17-88 4-78 0-166-11-230z"/>
-    <path class="fig__hair" d="M678 128c10 70 12 158 8 236-2 34-6 62-12 82
-        -9-22-15-52-17-88-4-78 0-166 11-230z"/>
+    <path class="fig__shade" d="M596 170l-6 26c4 4 16 4 20 0l-6-26z" opacity=".3"/>
+    <path class="fig__mouth" d="M585 212c9 6 21 6 30 0"/>
     </svg>
 
     <!-- Layer 2: mist drifting at the base of the wall -->
