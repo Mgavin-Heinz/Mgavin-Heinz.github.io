@@ -7,7 +7,7 @@
      2.  Base / reset
      3.  Overlays (grain, progress blade)
      4.  Navbar
-     5.  Hero scene (wall, titan, mist)
+     5.  Hero scene (wall, figure, mist)
      6.  Hero content
      7.  Section shell + shared bits
      8.  Timeline (Expedition Log)
@@ -36,6 +36,9 @@
   --wrap: 1120px;
   --ease: cubic-bezier(.22,1,.36,1);
 
+  /* Height of the hero wall. Drives the wall, the hands and the figure. */
+  --wall-h: clamp(130px, 24vh, 230px);
+
   --font-display: 'Cinzel', Georgia, serif;
   --font-label:   'Oswald', 'Arial Narrow', sans-serif;
   --font-body:    'Barlow', system-ui, -apple-system, sans-serif;
@@ -50,10 +53,24 @@
   --border-2:  rgba(157,28,31,.42);
   --text:      #ece5d8;
   --text-dim:  #9a9082;
-  --stone:     #1b1917;
-  --stone-line:#0a0908;
-  --stone-top: #2c2825;
-  --titan:     #070606;
+  /* wall stones — five tones, dealt across the blocks */
+  --stone-1:   #1e1b19;
+  --stone-2:   #262220;
+  --stone-3:   #171514;
+  --stone-4:   #2b2620;
+  --stone-5:   #211e1b;
+  --mortar:    #0b0a09;
+  --stone-top: #3a342d;
+  --stone-cap-lit: #4a423a;
+  /* the figure */
+  --skin:       #ddab8c;
+  --skin-shade: #b57e62;
+  --hair:       #141010;
+  --cloth:      #2b2724;
+  --collar:     #201d1b;
+  --eye-white:  #e9e2d7;
+  --iris:       #3a2a1e;
+  --mouth:      #a86e56;
   --mist:      rgba(217,205,180,.05);
   --grain-op:  .07;
   --wing-a:    #9d1c1f;
@@ -72,10 +89,24 @@
   --text-dim:  #6a5f4e;
   --blood:     #8c1a1d;
   --blood-2:   #a82b26;
-  --stone:     #c9bfa8;
-  --stone-line:#b3a88f;
-  --stone-top: #d8cfba;
-  --titan:     #9c917b;
+  /* wall stones — weathered limestone in daylight */
+  --stone-1:   #c8bda6;
+  --stone-2:   #d2c8b2;
+  --stone-3:   #bcb099;
+  --stone-4:   #d6ccb4;
+  --stone-5:   #c3b8a1;
+  --mortar:    #9e937c;
+  --stone-top: #ded5c1;
+  --stone-cap-lit: #ece4d4;
+  /* the figure — warmer in daylight */
+  --skin:       #e8b895;
+  --skin-shade: #c08a68;
+  --hair:       #1a1413;
+  --cloth:      #3b352e;
+  --collar:     #2c2721;
+  --eye-white:  #f4efe6;
+  --iris:       #43301f;
+  --mouth:      #b0755a;
   --mist:      rgba(255,255,255,.35);
   --grain-op:  .12;
   --wing-a:    #8c1a1d;
@@ -235,39 +266,83 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   to   { transform: translateX(3%)  scale(1.08); }
 }
 
-/* Titan silhouette */
-.hero__titan {
-  position: absolute; left: 50%; bottom: 0;
-  width: min(1300px, 145%); height: min(70vh, 560px);
+/* ----- THE FIGURE peeking over the wall -----
+   Lower half is hidden by the masonry; the hands sit in front of it.
+   All colours come from the --skin / --hair / --cloth variables. */
+.hero__figure {
+  position: absolute; left: 50%;
+  bottom: calc(var(--wall-h) - 88px);
+  width: min(1100px, 132%); height: min(58vh, 470px);
   transform: translateX(-50%);
-  opacity: .85;
-}
-.titan { fill: var(--titan); animation: breathe 7s ease-in-out infinite; transform-origin: 600px 420px; }
-@keyframes breathe { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-8px) scale(1.012); } }
-/* steam rising off the body */
-.titan__steam { fill: var(--titan); animation: steam 6s ease-in-out infinite; }
-@keyframes steam {
-  0%,100% { opacity: .12; transform: translateY(0)   scaleY(1); }
-  50%     { opacity: .3;  transform: translateY(-18px) scaleY(1.1); }
+  z-index: 1;
+  opacity: .88;
+  /* NB: no transform animation here — script.js writes an inline
+     transform for the parallax, which would override it. */
 }
 
-/* The wall — stone block pattern, sits in front of the titan */
-.hero__wall {
+.fig__hair     { fill: var(--hair); }
+.fig__skin     { fill: var(--skin); }
+.fig__shade    { fill: var(--skin-shade); }
+.fig__cloth    { fill: var(--cloth); }
+.fig__collar   { fill: var(--collar); }
+.fig__eyeWhite { fill: var(--eye-white); }
+.fig__iris     { fill: var(--iris); }
+.fig__lid      { stroke: var(--hair); stroke-width: 3.5; stroke-linecap: round; fill: none; }
+.fig__mouth    { stroke: var(--mouth); stroke-width: 4; stroke-linecap: round; fill: none; }
+
+/* ----- THE WALL -----
+   Three stacked layers, all inside .hero__scene:
+     .hero__figure    z1  — the person, behind the wall
+     .hero__wall-svg  z3  — the masonry itself
+     .hero__hands     z4  — hands gripping the capstone, in front
+   --wall-h drives all three, so change it in one place. */
+.hero__wall-svg {
   position: absolute; left: 0; right: 0; bottom: 0;
-  height: clamp(110px, 22vh, 210px);
-  border-top: 4px solid var(--stone-top);
-  background-color: var(--stone);
-  background-image:
-    linear-gradient(180deg, rgba(255,255,255,.05), transparent 30%, rgba(0,0,0,.5)),
-    repeating-linear-gradient(90deg, transparent 0 96px, var(--stone-line) 96px 99px),
-    repeating-linear-gradient(180deg, transparent 0 46px, var(--stone-line) 46px 49px);
-  box-shadow: 0 -22px 44px rgba(0,0,0,.5);
+  width: 100%; height: var(--wall-h);
+  z-index: 3;
+  filter: drop-shadow(0 -20px 40px rgba(0,0,0,.55));
 }
+
+/* Stone tones — five variants dealt out across the blocks */
+.hero__wall-svg .mortar { fill: var(--mortar); }
+.hero__wall-svg .b1 { fill: var(--stone-1); }
+.hero__wall-svg .b2 { fill: var(--stone-2); }
+.hero__wall-svg .b3 { fill: var(--stone-3); }
+.hero__wall-svg .b4 { fill: var(--stone-4); }
+.hero__wall-svg .b5 { fill: var(--stone-5); }
+
+/* Per-block bevel: lit top edge, shadowed bottom edge */
+.hero__wall-svg .bevelTop { fill: #fff; opacity: .07; }
+.hero__wall-svg .bevelBot { fill: #000; opacity: .4; }
+
+/* Stone grain — noise blended over the blocks so they aren't flat */
+.hero__wall-svg .grainLayer { opacity: .14; mix-blend-mode: overlay; }
+
+/* Damp streaks running down from the capstone, and cracks */
+.hero__wall-svg .streak { fill: #000; opacity: .18; }
+.hero__wall-svg .crack  { stroke: var(--mortar); stroke-width: 3; fill: none; opacity: .9; }
+
+/* Capstone course — overhangs slightly and casts a hard shadow */
+.hero__wall-svg .cap       { fill: var(--stone-top); }
+.hero__wall-svg .capEdge   { fill: var(--stone-cap-lit); }
+.hero__wall-svg .capShadow { fill: #000; opacity: .5; }
+
+/* Hands gripping the top of the wall */
+.hero__hands {
+  position: absolute; left: 50%;
+  bottom: calc(var(--wall-h) - 48px);   /* fingers hang over the capstone */
+  transform: translateX(-50%);
+  width: min(1180px, 118%); height: 88px;
+  z-index: 4;
+}
+.fig__hands { fill: var(--skin); filter: drop-shadow(0 6px 12px rgba(0,0,0,.55)); }
+
 .hero__wall-label {
-  position: absolute; right: 26px; top: 16px;
+  position: absolute; right: 26px; bottom: calc(var(--wall-h) - 30px);
+  z-index: 5;
   font-family: var(--font-label); font-weight: 300;
   font-size: .68rem; letter-spacing: .3em; text-transform: uppercase;
-  color: var(--bone); opacity: .3;
+  color: var(--bone); opacity: .28;
 }
 
 /* ---------- 6. HERO CONTENT ---------- */

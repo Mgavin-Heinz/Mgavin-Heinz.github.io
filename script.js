@@ -7,7 +7,7 @@
    3. Sticky nav + reading-progress blade
    4. Active nav link
    5. Typed rotating line   <-- EDIT THE `ROLES` ARRAY
-   6. Hero parallax (titan drifts as you scroll)
+   6. Hero parallax (the figure drifts as you scroll)
    7. Scroll reveal
    8. Footer year
    ========================================================= */
@@ -65,7 +65,7 @@
   /* ---------- 3. STICKY NAV + PROGRESS ---------- */
   var nav = document.getElementById('nav');
   var progress = document.getElementById('progress');
-  var titan = document.getElementById('heroTitan');
+  var figure = document.getElementById('heroFigure');
   var ticking = false;
 
   function onScrollFrame() {
@@ -79,9 +79,9 @@
     }
 
     /* ---------- 6. HERO PARALLAX ---------- */
-    // Titan sinks slightly slower than the page, so it feels far away.
-    if (titan && !reduceMotion && y < window.innerHeight) {
-      titan.style.transform = 'translateX(-50%) translateY(' + (y * 0.22) + 'px)';
+    // The figure sinks slightly slower than the page, so it feels far away.
+    if (figure && !reduceMotion && y < window.innerHeight) {
+      figure.style.transform = 'translateX(-50%) translateY(' + (y * 0.22) + 'px)';
     }
 
     ticking = false;

@@ -89,39 +89,287 @@
 <main>
 
 <!-- =========================================================
-     HERO — wall + titan silhouette behind the text.
+     HERO — wall + figure peeking over it, behind the text.
      The whole .hero__scene block is decorative; delete it and the
      page still works.
      ========================================================= -->
 <section class="hero" id="hero">
 
   <div class="hero__scene" aria-hidden="true">
-    <div class="hero__mist"></div>
 
-    <!-- Titan silhouette peering over the wall (parallaxes on scroll) -->
-    <svg class="hero__titan" id="heroTitan" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMax slice">
-      <g class="titan">
-        <!-- ragged hair -->
-        <path d="M534 132c0-52 30-84 66-84s66 32 66 84c-6-16-14-28-24-36l-6 26-14-34-10 30-12-34-14 32-10-28-16 32-8-26c-10 8-18 20-18 38z"/>
-        <!-- head -->
-        <ellipse cx="600" cy="138" rx="58" ry="70"/>
-        <!-- shoulders + torso -->
-        <path d="M600 196c66 0 112 46 130 122l26 102H444l26-102c18-76 64-122 130-122z"/>
-        <!-- arms braced against the wall -->
-        <path d="M486 258c-84 22-140 88-158 162h74c16-84 56-128 106-146z"/>
-        <path d="M714 258c84 22 140 88 158 162h-74c-16-84-56-128-106-146z"/>
-      </g>
-      <!-- rising steam -->
-      <g class="titan__steam">
-        <path d="M420 420c-6-70 22-104 10-160 26 44 34 96 22 160z"/>
-        <path d="M790 420c8-64-18-100-6-152-24 40-32 90-20 152z"/>
-      </g>
+    <!-- Layer 1: the figure peeking over, behind the wall. Parallaxes on scroll. -->
+    <svg class="hero__figure" id="heroFigure" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+
+    <!-- hair mass behind the head, falling past the shoulders -->
+    <path class="fig__hair" d="M600 38C508 38 474 110 476 186c2 64-10 146-14 222
+        -2 34 4 56 14 70l248 0c10-14 16-36 14-70-4-76-16-158-14-222 2-76-32-148-124-148z"/>
+
+    <!-- neck -->
+    <path class="fig__skin" d="M574 214h52v70h-52z"/>
+    <path class="fig__shade" d="M574 214h52v24a26 26 0 0 1 -52 0z" opacity=".5"/>
+
+    <!-- shoulders + arms -->
+    <path class="fig__cloth" d="M600 262c78 0 136 42 158 112l26 226H416l26-226c22-70 80-112 158-112z"/>
+    <path class="fig__cloth" d="M474 326c-92 26-156 100-176 274h88c18-150 60-224 118-248z"/>
+    <path class="fig__cloth" d="M726 326c92 26 156 100 176 274h-88c-18-150-60-224-118-248z"/>
+    <!-- collar -->
+    <path class="fig__collar" d="M600 268c22 0 42 5 58 14l-24 34-34-20-34 20-24-34c16-9 36-14 58-14z"/>
+
+    <!-- face: narrower, longer jaw -->
+    <path class="fig__skin" d="M600 66c-44 0-72 36-72 82 0 33 7 59 22 79 14 19 31 31 50 31
+        s36-12 50-31c15-20 22-46 22-79 0-46-28-82-72-82z"/>
+
+    <!-- brows -->
+    <path class="fig__hair" d="M550 130c13-8 34-8 45-3l-2 10c-10-4-29-4-41 2z"/>
+    <path class="fig__hair" d="M650 130c-13-8-34-8-45-3l2 10c10-4 29-4 41 2z"/>
+
+    <!-- eyes -->
+    <g class="fig__eyeWhite">
+      <path d="M556 158c8-8 22-8 30 0-8 9-22 9-30 0z"/>
+      <path d="M644 158c-8-8-22-8-30 0 8 9 22 9 30 0z"/>
+    </g>
+    <g class="fig__iris"><circle cx="571" cy="158" r="6"/><circle cx="629" cy="158" r="6"/></g>
+    <g class="fig__lid">
+      <path d="M556 158c8-8 22-8 30 0" fill="none"/>
+      <path d="M644 158c-8-8-22-8-30 0" fill="none"/>
+    </g>
+
+    <!-- nose + mouth -->
+    <path class="fig__shade" d="M596 172l-6 26c4 4 16 4 20 0l-6-26z" opacity=".3"/>
+    <path class="fig__mouth" d="M585 216c9 6 21 6 30 0"/>
+
+    <!-- fringe, parted, layered over the forehead -->
+    <path class="fig__hair" d="M600 50c-56 0-88 40-90 98 7-28 22-47 43-55
+        -5 13-8 25-8 37 11-26 30-42 55-41-4 10-7 19-7 28 13-22 31-33 52-30
+        -3 8-5 16-4 24 11-17 26-25 43-22-6-23-28-39-84-39z"/>
+
+    <!-- tapered locks framing the jaw -->
+    <path class="fig__hair" d="M522 128c-10 70-12 158-8 236 2 34 6 62 12 82
+        9-22 15-52 17-88 4-78 0-166-11-230z"/>
+    <path class="fig__hair" d="M678 128c10 70 12 158 8 236-2 34-6 62-12 82
+        -9-22-15-52-17-88-4-78 0-166 11-230z"/>
     </svg>
 
-    <!-- The wall itself -->
-    <div class="hero__wall">
-      <span class="hero__wall-label">Wall Maria — District 04</span>
-    </div>
+    <!-- Layer 2: mist drifting at the base of the wall -->
+    <div class="hero__mist"></div>
+
+    <!-- Layer 3: the wall. Staggered stone courses, capstone, weathering.
+         Generated markup — edit the tone classes .b1-.b5 in styles.css
+         rather than these rects. -->
+    <svg class="hero__wall-svg" viewBox="0 0 1600 320" preserveAspectRatio="xMidYMin slice" aria-hidden="true">
+      <defs>
+        <filter id="stoneGrain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="4" seed="5"/><feColorMatrix type="saturate" values="0"/></filter>
+        <linearGradient id="wLight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".09"/><stop offset=".3" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient>
+        <linearGradient id="wSide" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".5"/><stop offset=".28" stop-color="#000" stop-opacity="0"/><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></linearGradient>
+      </defs>
+      <rect class="mortar" x="0" y="0" width="1600" height="320"/>
+      <g class="blocks">
+        <rect class="b5" x="0" y="44" width="114" height="54" rx="2"/>
+        <rect class="b4" x="120" y="44" width="114" height="54" rx="2"/>
+        <rect class="b5" x="240" y="44" width="154" height="54" rx="2"/>
+        <rect class="b2" x="400" y="44" width="144" height="54" rx="2"/>
+        <rect class="b4" x="550" y="44" width="154" height="54" rx="2"/>
+        <rect class="b2" x="710" y="44" width="154" height="54" rx="2"/>
+        <rect class="b4" x="870" y="44" width="124" height="54" rx="2"/>
+        <rect class="b2" x="1000" y="44" width="164" height="54" rx="2"/>
+        <rect class="b5" x="1170" y="44" width="124" height="54" rx="2"/>
+        <rect class="b5" x="1300" y="44" width="124" height="54" rx="2"/>
+        <rect class="b4" x="1430" y="44" width="114" height="54" rx="2"/>
+        <rect class="b2" x="1550" y="44" width="56" height="54" rx="2"/>
+        <rect class="b1" x="-75" y="104" width="154" height="54" rx="2"/>
+        <rect class="b1" x="85" y="104" width="154" height="54" rx="2"/>
+        <rect class="b1" x="245" y="104" width="124" height="54" rx="2"/>
+        <rect class="b2" x="375" y="104" width="144" height="54" rx="2"/>
+        <rect class="b1" x="525" y="104" width="154" height="54" rx="2"/>
+        <rect class="b3" x="685" y="104" width="114" height="54" rx="2"/>
+        <rect class="b5" x="805" y="104" width="114" height="54" rx="2"/>
+        <rect class="b5" x="925" y="104" width="144" height="54" rx="2"/>
+        <rect class="b3" x="1075" y="104" width="144" height="54" rx="2"/>
+        <rect class="b1" x="1225" y="104" width="114" height="54" rx="2"/>
+        <rect class="b4" x="1345" y="104" width="124" height="54" rx="2"/>
+        <rect class="b4" x="1475" y="104" width="131" height="54" rx="2"/>
+        <rect class="b1" x="0" y="164" width="154" height="54" rx="2"/>
+        <rect class="b3" x="160" y="164" width="164" height="54" rx="2"/>
+        <rect class="b5" x="330" y="164" width="144" height="54" rx="2"/>
+        <rect class="b1" x="480" y="164" width="164" height="54" rx="2"/>
+        <rect class="b5" x="650" y="164" width="124" height="54" rx="2"/>
+        <rect class="b4" x="780" y="164" width="124" height="54" rx="2"/>
+        <rect class="b3" x="910" y="164" width="124" height="54" rx="2"/>
+        <rect class="b1" x="1040" y="164" width="114" height="54" rx="2"/>
+        <rect class="b1" x="1160" y="164" width="124" height="54" rx="2"/>
+        <rect class="b2" x="1290" y="164" width="144" height="54" rx="2"/>
+        <rect class="b4" x="1440" y="164" width="124" height="54" rx="2"/>
+        <rect class="b4" x="1570" y="164" width="36" height="54" rx="2"/>
+        <rect class="b1" x="-75" y="224" width="114" height="54" rx="2"/>
+        <rect class="b2" x="45" y="224" width="154" height="54" rx="2"/>
+        <rect class="b3" x="205" y="224" width="164" height="54" rx="2"/>
+        <rect class="b3" x="375" y="224" width="124" height="54" rx="2"/>
+        <rect class="b1" x="505" y="224" width="164" height="54" rx="2"/>
+        <rect class="b1" x="675" y="224" width="114" height="54" rx="2"/>
+        <rect class="b2" x="795" y="224" width="144" height="54" rx="2"/>
+        <rect class="b1" x="945" y="224" width="124" height="54" rx="2"/>
+        <rect class="b4" x="1075" y="224" width="124" height="54" rx="2"/>
+        <rect class="b2" x="1205" y="224" width="114" height="54" rx="2"/>
+        <rect class="b2" x="1325" y="224" width="154" height="54" rx="2"/>
+        <rect class="b5" x="1485" y="224" width="121" height="54" rx="2"/>
+        <rect class="b2" x="0" y="284" width="144" height="54" rx="2"/>
+        <rect class="b4" x="150" y="284" width="114" height="54" rx="2"/>
+        <rect class="b4" x="270" y="284" width="124" height="54" rx="2"/>
+        <rect class="b2" x="400" y="284" width="114" height="54" rx="2"/>
+        <rect class="b3" x="520" y="284" width="124" height="54" rx="2"/>
+        <rect class="b3" x="650" y="284" width="154" height="54" rx="2"/>
+        <rect class="b2" x="810" y="284" width="124" height="54" rx="2"/>
+        <rect class="b4" x="940" y="284" width="144" height="54" rx="2"/>
+        <rect class="b5" x="1090" y="284" width="154" height="54" rx="2"/>
+        <rect class="b1" x="1250" y="284" width="124" height="54" rx="2"/>
+        <rect class="b2" x="1380" y="284" width="144" height="54" rx="2"/>
+        <rect class="b3" x="1530" y="284" width="76" height="54" rx="2"/>
+      </g>
+      <g class="bevelTop">
+        <rect x="0" y="44" width="114" height="3" rx="1.5"/>
+        <rect x="120" y="44" width="114" height="3" rx="1.5"/>
+        <rect x="240" y="44" width="154" height="3" rx="1.5"/>
+        <rect x="400" y="44" width="144" height="3" rx="1.5"/>
+        <rect x="550" y="44" width="154" height="3" rx="1.5"/>
+        <rect x="710" y="44" width="154" height="3" rx="1.5"/>
+        <rect x="870" y="44" width="124" height="3" rx="1.5"/>
+        <rect x="1000" y="44" width="164" height="3" rx="1.5"/>
+        <rect x="1170" y="44" width="124" height="3" rx="1.5"/>
+        <rect x="1300" y="44" width="124" height="3" rx="1.5"/>
+        <rect x="1430" y="44" width="114" height="3" rx="1.5"/>
+        <rect x="1550" y="44" width="56" height="3" rx="1.5"/>
+        <rect x="-75" y="104" width="154" height="3" rx="1.5"/>
+        <rect x="85" y="104" width="154" height="3" rx="1.5"/>
+        <rect x="245" y="104" width="124" height="3" rx="1.5"/>
+        <rect x="375" y="104" width="144" height="3" rx="1.5"/>
+        <rect x="525" y="104" width="154" height="3" rx="1.5"/>
+        <rect x="685" y="104" width="114" height="3" rx="1.5"/>
+        <rect x="805" y="104" width="114" height="3" rx="1.5"/>
+        <rect x="925" y="104" width="144" height="3" rx="1.5"/>
+        <rect x="1075" y="104" width="144" height="3" rx="1.5"/>
+        <rect x="1225" y="104" width="114" height="3" rx="1.5"/>
+        <rect x="1345" y="104" width="124" height="3" rx="1.5"/>
+        <rect x="1475" y="104" width="131" height="3" rx="1.5"/>
+        <rect x="0" y="164" width="154" height="3" rx="1.5"/>
+        <rect x="160" y="164" width="164" height="3" rx="1.5"/>
+        <rect x="330" y="164" width="144" height="3" rx="1.5"/>
+        <rect x="480" y="164" width="164" height="3" rx="1.5"/>
+        <rect x="650" y="164" width="124" height="3" rx="1.5"/>
+        <rect x="780" y="164" width="124" height="3" rx="1.5"/>
+        <rect x="910" y="164" width="124" height="3" rx="1.5"/>
+        <rect x="1040" y="164" width="114" height="3" rx="1.5"/>
+        <rect x="1160" y="164" width="124" height="3" rx="1.5"/>
+        <rect x="1290" y="164" width="144" height="3" rx="1.5"/>
+        <rect x="1440" y="164" width="124" height="3" rx="1.5"/>
+        <rect x="1570" y="164" width="36" height="3" rx="1.5"/>
+        <rect x="-75" y="224" width="114" height="3" rx="1.5"/>
+        <rect x="45" y="224" width="154" height="3" rx="1.5"/>
+        <rect x="205" y="224" width="164" height="3" rx="1.5"/>
+        <rect x="375" y="224" width="124" height="3" rx="1.5"/>
+        <rect x="505" y="224" width="164" height="3" rx="1.5"/>
+        <rect x="675" y="224" width="114" height="3" rx="1.5"/>
+        <rect x="795" y="224" width="144" height="3" rx="1.5"/>
+        <rect x="945" y="224" width="124" height="3" rx="1.5"/>
+        <rect x="1075" y="224" width="124" height="3" rx="1.5"/>
+        <rect x="1205" y="224" width="114" height="3" rx="1.5"/>
+        <rect x="1325" y="224" width="154" height="3" rx="1.5"/>
+        <rect x="1485" y="224" width="121" height="3" rx="1.5"/>
+        <rect x="0" y="284" width="144" height="3" rx="1.5"/>
+        <rect x="150" y="284" width="114" height="3" rx="1.5"/>
+        <rect x="270" y="284" width="124" height="3" rx="1.5"/>
+        <rect x="400" y="284" width="114" height="3" rx="1.5"/>
+        <rect x="520" y="284" width="124" height="3" rx="1.5"/>
+        <rect x="650" y="284" width="154" height="3" rx="1.5"/>
+        <rect x="810" y="284" width="124" height="3" rx="1.5"/>
+        <rect x="940" y="284" width="144" height="3" rx="1.5"/>
+        <rect x="1090" y="284" width="154" height="3" rx="1.5"/>
+        <rect x="1250" y="284" width="124" height="3" rx="1.5"/>
+        <rect x="1380" y="284" width="144" height="3" rx="1.5"/>
+        <rect x="1530" y="284" width="76" height="3" rx="1.5"/>
+      </g>
+      <g class="bevelBot">
+        <rect x="0" y="94" width="114" height="4" rx="2"/>
+        <rect x="120" y="94" width="114" height="4" rx="2"/>
+        <rect x="240" y="94" width="154" height="4" rx="2"/>
+        <rect x="400" y="94" width="144" height="4" rx="2"/>
+        <rect x="550" y="94" width="154" height="4" rx="2"/>
+        <rect x="710" y="94" width="154" height="4" rx="2"/>
+        <rect x="870" y="94" width="124" height="4" rx="2"/>
+        <rect x="1000" y="94" width="164" height="4" rx="2"/>
+        <rect x="1170" y="94" width="124" height="4" rx="2"/>
+        <rect x="1300" y="94" width="124" height="4" rx="2"/>
+        <rect x="1430" y="94" width="114" height="4" rx="2"/>
+        <rect x="1550" y="94" width="56" height="4" rx="2"/>
+        <rect x="-75" y="154" width="154" height="4" rx="2"/>
+        <rect x="85" y="154" width="154" height="4" rx="2"/>
+        <rect x="245" y="154" width="124" height="4" rx="2"/>
+        <rect x="375" y="154" width="144" height="4" rx="2"/>
+        <rect x="525" y="154" width="154" height="4" rx="2"/>
+        <rect x="685" y="154" width="114" height="4" rx="2"/>
+        <rect x="805" y="154" width="114" height="4" rx="2"/>
+        <rect x="925" y="154" width="144" height="4" rx="2"/>
+        <rect x="1075" y="154" width="144" height="4" rx="2"/>
+        <rect x="1225" y="154" width="114" height="4" rx="2"/>
+        <rect x="1345" y="154" width="124" height="4" rx="2"/>
+        <rect x="1475" y="154" width="131" height="4" rx="2"/>
+        <rect x="0" y="214" width="154" height="4" rx="2"/>
+        <rect x="160" y="214" width="164" height="4" rx="2"/>
+        <rect x="330" y="214" width="144" height="4" rx="2"/>
+        <rect x="480" y="214" width="164" height="4" rx="2"/>
+        <rect x="650" y="214" width="124" height="4" rx="2"/>
+        <rect x="780" y="214" width="124" height="4" rx="2"/>
+        <rect x="910" y="214" width="124" height="4" rx="2"/>
+        <rect x="1040" y="214" width="114" height="4" rx="2"/>
+        <rect x="1160" y="214" width="124" height="4" rx="2"/>
+        <rect x="1290" y="214" width="144" height="4" rx="2"/>
+        <rect x="1440" y="214" width="124" height="4" rx="2"/>
+        <rect x="1570" y="214" width="36" height="4" rx="2"/>
+        <rect x="-75" y="274" width="114" height="4" rx="2"/>
+        <rect x="45" y="274" width="154" height="4" rx="2"/>
+        <rect x="205" y="274" width="164" height="4" rx="2"/>
+        <rect x="375" y="274" width="124" height="4" rx="2"/>
+        <rect x="505" y="274" width="164" height="4" rx="2"/>
+        <rect x="675" y="274" width="114" height="4" rx="2"/>
+        <rect x="795" y="274" width="144" height="4" rx="2"/>
+        <rect x="945" y="274" width="124" height="4" rx="2"/>
+        <rect x="1075" y="274" width="124" height="4" rx="2"/>
+        <rect x="1205" y="274" width="114" height="4" rx="2"/>
+        <rect x="1325" y="274" width="154" height="4" rx="2"/>
+        <rect x="1485" y="274" width="121" height="4" rx="2"/>
+        <rect x="0" y="334" width="144" height="4" rx="2"/>
+        <rect x="150" y="334" width="114" height="4" rx="2"/>
+        <rect x="270" y="334" width="124" height="4" rx="2"/>
+        <rect x="400" y="334" width="114" height="4" rx="2"/>
+        <rect x="520" y="334" width="124" height="4" rx="2"/>
+        <rect x="650" y="334" width="154" height="4" rx="2"/>
+        <rect x="810" y="334" width="124" height="4" rx="2"/>
+        <rect x="940" y="334" width="144" height="4" rx="2"/>
+        <rect x="1090" y="334" width="154" height="4" rx="2"/>
+        <rect x="1250" y="334" width="124" height="4" rx="2"/>
+        <rect x="1380" y="334" width="144" height="4" rx="2"/>
+        <rect x="1530" y="334" width="76" height="4" rx="2"/>
+      </g>
+      <rect class="grainLayer" x="0" y="0" width="1600" height="320" filter="url(#stoneGrain)"/>
+      <path class="streak" d="M170 34 l30 0 l-10 286 l-16 0 z"/>
+      <path class="streak" d="M500 34 l30 0 l-10 286 l-16 0 z"/>
+      <path class="streak" d="M720 34 l30 0 l-10 286 l-16 0 z"/>
+      <path class="streak" d="M1010 34 l30 0 l-10 286 l-16 0 z"/>
+      <path class="streak" d="M1340 34 l30 0 l-10 286 l-16 0 z"/>
+      <path class="crack" d="M400 74 l20 46 l-13 40 l24 52 l-9 48"/>
+      <path class="crack" d="M1150 104 l-17 42 l15 38 l-11 54"/>
+      <rect class="cap" x="-14" y="0" width="1628" height="34" rx="2"/>
+      <rect class="capEdge" x="-14" y="0" width="1628" height="4"/>
+      <rect class="capShadow" x="-14" y="34" width="1628" height="12"/>
+      <rect x="0" y="0" width="1600" height="320" fill="url(#wLight)"/>
+      <rect x="0" y="0" width="1600" height="320" fill="url(#wSide)"/>
+    </svg>
+
+    <!-- Layer 4: his hands gripping the capstone, in front of the wall -->
+    <svg class="hero__hands" viewBox="0 -48 1200 88" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+      <g class="fig__hands" transform="translate(600 0) scale(.55)"><g transform="translate(-545 0)"><path d="M0 -16 q2 -54 40 -66 q46 -14 112 -7 q44 5 48 40 l6 45 z"/><path d="M188 -30 q34 -4 40 22 q4 26 -22 34 l-24 4 z"/><path d="M14 -14 h36 v42 a18 18 0 0 1 -36 0 z"/><path d="M56 -14 h36 v56 a18 18 0 0 1 -36 0 z"/><path d="M98 -14 h36 v52 a18 18 0 0 1 -36 0 z"/><path d="M140 -14 h36 v38 a18 18 0 0 1 -36 0 z"/></g><g transform="translate(545 0) scale(-1 1)"><path d="M0 -16 q2 -54 40 -66 q46 -14 112 -7 q44 5 48 40 l6 45 z"/><path d="M188 -30 q34 -4 40 22 q4 26 -22 34 l-24 4 z"/><path d="M14 -14 h36 v42 a18 18 0 0 1 -36 0 z"/><path d="M56 -14 h36 v56 a18 18 0 0 1 -36 0 z"/><path d="M98 -14 h36 v52 a18 18 0 0 1 -36 0 z"/><path d="M140 -14 h36 v38 a18 18 0 0 1 -36 0 z"/></g></g>
+    </svg>
+
+    <span class="hero__wall-label">Wall Maria — District 04</span>
   </div>
 
   <div class="hero__inner">

@@ -3,7 +3,7 @@
 Static portfolio site, Attack on Titan inspired. Plain HTML/CSS/JS, no build step, no dependencies.
 
 ```
-index.html    content, structure, the wings emblem + titan SVGs
+index.html    content, structure, the wings emblem, wall + figure SVGs
 styles.css    theme variables, layout, animations
 script.js     theme toggle, menu, typed line, parallax, scroll reveal
 ```
@@ -36,7 +36,7 @@ No build command, no output directory. It's static files.
 
 Toggle sits in the nav and saves to `localStorage`. Falls back to your OS preference on first visit.
 
-Design pieces: a Wings-of-Freedom-style emblem (`<symbol id="wings">`, drawn from scratch — reused in the nav, hero watermark, certifications header and footer), a stone wall with a titan silhouette that parallaxes behind the hero, drifting mist, film grain, a crimson reading-progress blade at the top, ink stamps on project cards, and signal-flare dots on the contact rows.
+Design pieces: a Wings-of-Freedom-style emblem (`<symbol id="wings">`, drawn from scratch — reused in the nav, hero watermark, certifications header and footer), a stone wall with a figure peeking over it that parallaxes behind the hero, drifting mist, film grain, a crimson reading-progress blade at the top, ink stamps on project cards, and signal-flare dots on the contact rows.
 
 ## What's on the page
 
@@ -63,5 +63,6 @@ Search the code for `EDIT:` or `flag` to jump to every spot that needs attention
 - **Rotating tagline** — the `ROLES` array in `script.js`.
 - **Section names** — the thematic titles ("Expedition Log", "The Armory", "Mission Records") are `.section__title`; the plain labels above them are `.section__kicker`. Nav always shows the plain names, so a recruiter skimming never gets lost.
 - **Adding a project** — duplicate any `<article class="card">` block. Use `card__stamp--alt` for a muted stamp, and `<span class="card__note">` instead of a link when there's no public repo.
-- **Tone it down** — delete `.hero__scene` from the HTML to lose the wall and titan; delete `.fx-grain` to lose the texture. Everything still works.
+- **The wall + figure** — `--wall-h` in `styles.css` controls the wall height; the figure and his hands reposition automatically. His colours are `--skin`, `--hair`, `--cloth`, `--iris` etc., set per theme. Stone colours are `--stone-1` … `--stone-5`, `--mortar`, `--stone-top`. The block `<rect>`s in `index.html` are generated markup — recolour via those variables rather than editing the rects.
+- **Tone it down** — delete `.hero__scene` from the HTML to lose the wall and figure; delete `.fx-grain` to lose the texture. Everything still works.
 - **Motion** — respects `prefers-reduced-motion`; animations switch off automatically.
