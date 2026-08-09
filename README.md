@@ -43,7 +43,7 @@ Design pieces: a Wings-of-Freedom-style emblem (`<symbol id="wings">`, drawn fro
 - **Experience** — Weighsoft, SocialSines (Nov–Dec 2025), CTU Training Solutions (2024–25), matric (class of 2022)
 - **Certifications** — AZ-204, AZ-900, DP-900, Credly JavaScript Specialist, Credly HTML & CSS Specialist
 - **Projects** — 2D Game Engine, Full-Stack Web Portfolio, Game Leaderboard API, Mobile Weighing System, License Key Generator
-- **Contact** — email, GitHub, phone, CV download
+- **Contact** — email, GitHub, CV download (phone deliberately omitted — public `tel:` links get scraped)
 
 ## TODO — things to fill in
 
